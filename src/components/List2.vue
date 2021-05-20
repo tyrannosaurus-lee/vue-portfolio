@@ -3,24 +3,44 @@
         <div class="row">
             <div v-for="item in list" v-bind:key="item.id" class="article">
                 <!-- {{ item.id }} <br> {{ item.name }} <br> {{ item.device }} <br> {{item.period}}  -->
-                <button v-on:click="togglePopup()" type="button"><img :src="`${item.image}`" alt=""></button>
+                <button v-on:click="showModal()" type="button"><img :src="`${item.image}`" alt=""></button>
             </div>
         </div>
     </div> 
 
+    <div class="dim-wrap" v-bind:class="{'on': isActive }" >
+        <div class="dim-wrap">
+            <div class="info-wrap">
+                <em class="port-tit"><a href="#" target="_blank">프로젝트명</a></em>
+                
+                <div class="project-desc">
+                    <ul class="port-desc">
+                        <li>
+                            <span>디바이스</span>
+                        </li>
+                        <li>
+                            <span>작업기간</span>
+                            <span>2014.06</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- <button v-on:click="$emit('close')" type="button" class="close">&times;</button> -->
+            </div>
+        </div>
+    </div>
 
-    <!-- <MyModal @close="closeModal"> -->
-    <template v-slot="dimwrap">
+
+    <!-- <template v-slot="dimwrap"> -->
         <!-- <div slot="projectname"></div> -->    
         <!-- <template v-slot="projectdesc"></template> -->
-    </template>
+    <!-- </template> -->
 </template> 
 
 <script>
-import Popup from '@/components/Popup.vue'
+// import Popup from '@/components/Popup.vue'
 export default {
     name: 'list',
-    components: Popup,
+    // components: Popup,
     props: {},
     data(){
         return {
@@ -136,7 +156,7 @@ export default {
         closeModal() {
             this.modal = false
         },
-        togglePopup(){
+        showModal(){
             return {
                 active: this.isActive && !this.error
             }
@@ -230,4 +250,24 @@ export default {
 
 /* android */
 .module-timeline .list-timeline li dt{padding:0 10px;height:23px;font-size:12px;line-height:23px;}
+
+/* modal popup */
+.dim-wrap {
+	display:block; position:fixed; left:0; top:0; right:0; bottom:0; width:100%; height:100%; background:rgba(0, 0, 0, .6);filter:alpha(opacity=50); z-index:1;
+	opacity:1; /* visibility:hidden; */ transition:all .3s;}
+.dim-wrap.on {display:block;opacity:1; /* visibility:visible; */}
+.close {display:block; position:absolute;right:2%;top:1%; font-size:60px; z-index:100;}
+.info-wrap {position:fixed;left:20%;top:30%;padding:5%;width:60%;border-radius:15px;background:#fff;z-index:2;opacity:1;transition: all .9s}
+.dim-wrap.on .info-wrap {opacity:1;visibility:visible;}
+.info-wrap .port-tit {display:block; margin-top:10px;text-align:center;}
+.info-wrap .port-tit:first-child {margin-top:0;}
+.info-wrap .port-tit a {font-size:34px; font-weight:600;}
+.info-wrap .port-tit a:hover {text-decoration:underline;}
+.info-wrap .port-tit a span {font-size:1.2rem; letter-spacing:-.1rem;}
+.port-desc {padding-top:20px;}
+.port-desc li {display:table; width:100%;}
+.port-desc li span {display:table-cell; height:56px; font-size:28px; vertical-align:middle;}
+.port-desc li span:last-child {width:70%;}
+.expire.on .second > div {display:none !important;}
+.top-wrap {display:none; position:fixed; bottom:140px;right:30px;}
 </style>
