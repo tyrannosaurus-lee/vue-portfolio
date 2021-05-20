@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Lee eunhye">
+    <meta property="og:description" content="front-end developer Lee eunhye">
+    <meta property="og:image" content="./favicon.ico">
+    <link rel="icon" href="./favicon.ico">
+    <title>Lee eunhye</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+    <script>
+      const html = document.querySelector('html');
+
+      document.addEventListener("DOMContentLoaded", function() {
+
+        //위로 가기
+        const topWrap = document.querySelector('.top-wrap');
+
+        function fadeOut(el){
+          el.style.opacity = 1;
+          (function fade() {
+            if ((el.style.opacity -= .1) < 0) {
+              el.style.display = "none";
+            } else {
+              requestAnimationFrame(fade);
+            }
+          })();
+        };
+        function fadeIn(el, display){
+          el.style.opacity = 0;
+          el.style.display = display || "block";
+          (function fade() {
+            var val = parseFloat(el.style.opacity);
+            if (!((val += .1) > 1)) {
+              el.style.opacity = val;
+              requestAnimationFrame(fade);
+            }
+          })();
+        };
+        window.addEventListener('scroll', function(el) {
+          console.log(pageYOffset);
+          if ( window.pageYOffset > 200 ) {
+            fadeIn(topWrap);
+          } else {
+            fadeOut(topWrap);
+          }
+        });	
+        topWrap.addEventListener('click', function() {
+          html.animate( { scrollTop : 0 }, 400 );
+          return false;
+        });
+
+
+        // document.querySelector('.expire .port-tit a').addEventListener('click', function(){
+        //   alert('기간이 만료된 페이지 입니다.');
+        //   return false;
+        // })
+
+        //class numbering
+        $('.article > div:first-child').addClass('thumb-area');
+        $('.article').html(function(index, html){
+          var portfolio_num =$('.article').length;
+          $(this).addClass('portfolio_list_' + (portfolio_num - index));
+        })
+
+        /* 팝업 열기 */
+        $('.thumb-area').click(function(){
+          const self = $(this).parents('.article');
+          if(!$('.article').is('on')){
+            self.toggleClass('on');
+            $('.article').not(self).removeClass('on');
+            setTimeout(function() {
+              self.find('.info-wrap').addClass('on');
+            }, 300);
+            setTimeout(function() {
+              $('.dim-wrap').addClass("on");
+            }, 200);
+          }
+        })
+
+        /* 팝업 닫기 */
+        // const popupClose = document.querySelectorAll('.close');
+        // popupClose.addEventListener('click', function(){
+        //   console.log('close');
+        //   $('.rina_eun').removeClass('on');
+        //   $('.dim-wrap').removeClass('on');
+        //   $('.info-wrap').removeClass('on');
+        // });
+
+        //view profile
+        $(".eun_pop").on('click', function(){
+          $('.eun_site_wrap').addClass("on");
+          
+          setTimeout(function() {
+            $('.rina_eun').addClass("on");
+            $('.dim-wrap').addClass('on');
+          }, 200);
+        });
+
+      });
+
+      window.onload = function() {
+        html.classList.add("loaded");
+        /* animation */
+        if($('#wrap').length > 0) {
+          var _scroll;
+          function motion() {
+            _scroll = $(window).scrollTop();
+            (_scroll > ($('.eun_site').offset().top / 8) + $('.eun_site').offset().top - $(window).height()) && $('.eun_site').addClass('ani-visible');
+            (_scroll > ($('.go_bottom_wrap').offset().top / 8) + $('.go_bottom_wrap').offset().top - $(window).height()) && $('.go_bottom_wrap').addClass('ani-visible');
+            (_scroll > ($('#container').offset().top / 8) + $('#container').offset().top - $(window).height()) && $('#container').addClass('ani-visible');
+          };
+          $(window).scroll(function() {
+            motion();
+          }).trigger('scroll');
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
