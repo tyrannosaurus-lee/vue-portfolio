@@ -16,7 +16,6 @@ import Top from '@/components/Top.vue'
 import AboutMe from '@/components/AboutMe.vue'
 // import List from '@/components/List.vue'
 import List2 from '@/components/List2.vue'
-// import Popup from '@/components/Popup.vue'
 import Bottom from '@/components/Bottom.vue'
 
 export default {

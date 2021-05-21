@@ -1,43 +1,38 @@
 <template>
     <div class="list">
         <div class="row">
-            <div v-for="item in list" v-bind:key="item.id" class="article">
-                <!-- {{ item.id }} <br> {{ item.name }} <br> {{ item.device }} <br> {{item.period}}  -->
-                <button v-on:click="showModal()" type="button"><img :src="`${item.image}`" alt=""></button>
+            <!-- <div v-for="item in list" v-bind:key="item.id" class="article"> -->
+            <div v-for="(item, index) in list" 
+                 v-bind:key="index" 
+                 v-on:click="showModal(item.name, item.period, $event)"
+                 class="article">
+                {{ item.id }} <br> {{ item.name }} <br> {{ item.device }} <br> {{item.period}} 
+                <button type="button"><img :src="`${item.image}`" alt=""></button>
             </div>
         </div>
     </div> 
 
-    <div class="dim-wrap" v-bind:class="{'on': isActive }" >
-        <div class="dim-wrap">
-            <div class="info-wrap">
-                <em class="port-tit"><a href="#" target="_blank">프로젝트명</a></em>
-                
-                <div class="project-desc">
-                    <ul class="port-desc">
-                        <li>
-                            <span>디바이스</span>
-                        </li>
-                        <li>
-                            <span>작업기간</span>
-                            <span>2014.06</span>
-                        </li>
-                    </ul>
-                </div>
-                <!-- <button v-on:click="$emit('close')" type="button" class="close">&times;</button> -->
+    <div class="dim-wrap" 
+         v-bind:class="{'on': isActive }" >
+        <div class="info-wrap">
+            <em class="port-tit"><a href="#" target="_blank">프로젝트명</a></em>
+            <div class="project-desc">
+                <ul class="port-desc">
+                    <li>
+                        <span>디바이스</span>
+                    </li>
+                    <li>
+                        <span>작업기간</span>
+                        <span>2014.06</span>
+                    </li>
+                </ul>
             </div>
+            <!-- <button v-on:click="$emit('close')" type="button" class="close">&times;</button> -->
         </div>
     </div>
-
-
-    <!-- <template v-slot="dimwrap"> -->
-        <!-- <div slot="projectname"></div> -->    
-        <!-- <template v-slot="projectdesc"></template> -->
-    <!-- </template> -->
 </template> 
 
 <script>
-// import Popup from '@/components/Popup.vue'
 export default {
     name: 'list',
     // components: Popup,
@@ -153,12 +148,16 @@ export default {
         // openModal() {
         //     this.modal = true
         // },
-        closeModal() {
-            this.modal = false
-        },
-        showModal(){
+        // closeModal() {
+        //     this.modal = false
+        // },
+        showModal(name, period, event){
+            // var dimWrap = this.$refs.dimWrap;
+            console.log('project name : ' + name);
+            console.log('period : ' + period);
+            console.log('class : ' + event.currentTarget.className);
             return {
-                active: this.isActive && !this.error
+            //     active: this.isActive && !this.error
             }
         }
     }
@@ -253,7 +252,7 @@ export default {
 
 /* modal popup */
 .dim-wrap {
-	display:block; position:fixed; left:0; top:0; right:0; bottom:0; width:100%; height:100%; background:rgba(0, 0, 0, .6);filter:alpha(opacity=50); z-index:1;
+	display:none; position:fixed; left:0; top:0; right:0; bottom:0; width:100%; height:100%; background:rgba(0, 0, 0, .6);filter:alpha(opacity=50); z-index:1;
 	opacity:1; /* visibility:hidden; */ transition:all .3s;}
 .dim-wrap.on {display:block;opacity:1; /* visibility:visible; */}
 .close {display:block; position:absolute;right:2%;top:1%; font-size:60px; z-index:100;}
