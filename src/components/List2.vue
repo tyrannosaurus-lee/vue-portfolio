@@ -13,7 +13,8 @@
     </div> 
 
     <div class="dim-wrap" 
-         v-bind:class="{'on': isActive }" >
+         v-bind:class="{'on': isActive }" 
+         ref="dim">
         <div class="info-wrap">
             <em class="port-tit"><a href="#" target="_blank">프로젝트명</a></em>
             <div class="project-desc">
@@ -35,7 +36,6 @@
 <script>
 export default {
     name: 'list',
-    // components: Popup,
     props: {},
     data(){
         return {
@@ -79,32 +79,32 @@ export default {
                     id: 6, 
                     name: 'JTBC 5th Event', 
                     device: 'pc, mobile web', 
-                    period: '',
+                    period: '2021.05',
                     image: require('@/assets/images/jtbc_5th.png')
                 },
                 {
                     id: 7, 
                     name: 'JTBC 아는형님 200회 출석 체크 이벤트', 
                     device: 'pc, mobile web', 
-                    period: '',
+                    period: '2022.05',
                     image: require('@/assets/images/knowingbrother_logo.jpg')
                 },{
                     id: 8, 
                     name: 'JTBC beautyinside 바뀐그림찾기', 
                     device: 'pc, mobile web', 
-                    period: '',
+                    period: '2023.05',
                     image: require('@/assets/images/beautyinside.png')
                 },{
                     id: 9, 
                     name: 'JTBC2', 
                     device: 'pc, mobile web', 
-                    period: '',
+                    period: '2024.05',
                     image: require('@/assets/images/jtbc2.png')
                 },{
                     id: 10, 
                     name: 'JTBC 히든싱어 레전드 편 투표', 
                     device: 'pc, mobile web', 
-                    period: '',
+                    period: '2025.05',
                     image: require('@/assets/images/hiddensinger5.png')
                 },{
                     id: 11, 
@@ -138,26 +138,21 @@ export default {
                     image: require('@/assets/images/mixnine.png')
                 }
             ],
-            // isActive: true,
-            // error: null
-            modal: false,
-            message: ''
+            isActive: false,
+            error: null
         }   
     },
     methods: {
-        // openModal() {
-        //     this.modal = true
-        // },
-        // closeModal() {
-        //     this.modal = false
-        // },
         showModal(name, period, event){
-            // var dimWrap = this.$refs.dimWrap;
+            // var dimWrap = this.$refs.dim;
             console.log('project name : ' + name);
             console.log('period : ' + period);
             console.log('class : ' + event.currentTarget.className);
+            // if(dimWrap.contains('on')){
+            //   dimWrap.remove('on')
+            // }
             return {
-            //     active: this.isActive && !this.error
+                active: this.isActive && !this.error
             }
         }
     }
@@ -167,7 +162,7 @@ export default {
 .container {margin:0 auto;max-width:100%;}
 .row {display:-ms-flexbox; display:flex; -ms-flex-wrap:wrap; flex-wrap:wrap; margin-left:-15px; margin-right:-15px; min-width:320px;}
 .article {
-	overflow:hidden;position:relative; padding:15px; box-sizing:border-box;
+	overflow:hidden;position:relative; padding:15px; box-sizing:border-box; cursor:pointer;
 	flex:0 0 16.666667%; max-width:16.666667%;
 }
 .article .thumb-area, .article .second {width:100%;height:100%;}
