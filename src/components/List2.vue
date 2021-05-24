@@ -4,9 +4,12 @@
             <!-- <div v-for="item in list" v-bind:key="item.id" class="article"> -->
             <div v-for="(item, index) in list" 
                  v-bind:key="index" 
-                 v-on:click="showModal(item.name, item.period, $event)"
+                 v-on:click="showModal(index)"
                  class="article">
-                {{ item.id }} <br> {{ item.name }} <br> {{ item.device }} <br> {{item.period}} 
+                <!-- {{ item.id }} <br> 
+                {{ item.name }} <br> 
+                {{ item.device }} <br> 
+                {{item.period}}  -->
                 <button type="button"><img :src="`${item.image}`" alt=""></button>
             </div>
         </div>
@@ -14,21 +17,29 @@
 
     <div class="dim-wrap" 
          v-bind:class="{'on': isActive }" 
+          v-on:click="togglePopup()"
          ref="dim">
         <div class="info-wrap">
-            <em class="port-tit"><a href="#" target="_blank">프로젝트명</a></em>
+            <em class="port-tit">
+                <a href="#" target="_blank">
+                    {{ list[popupIndex].name }}
+                </a>
+            </em>
             <div class="project-desc">
                 <ul class="port-desc">
                     <li>
-                        <span>디바이스</span>
+                        <span>
+                            {{ list[popupIndex].device }}
+                        </span>
                     </li>
                     <li>
-                        <span>작업기간</span>
-                        <span>2014.06</span>
+                        <span>
+                            {{ list[popupIndex].period }}
+                        </span>
                     </li>
                 </ul>
             </div>
-            <!-- <button v-on:click="$emit('close')" type="button" class="close">&times;</button> -->
+            <button v-on:click="togglePopup()" type="button" class="close">&times;</button>
         </div>
     </div>
 </template> 
@@ -139,21 +150,17 @@ export default {
                 }
             ],
             isActive: false,
-            error: null
+            popupIndex: 0
         }   
     },
     methods: {
-        showModal(name, period, event){
-            // var dimWrap = this.$refs.dim;
-            console.log('project name : ' + name);
-            console.log('period : ' + period);
-            console.log('class : ' + event.currentTarget.className);
-            // if(dimWrap.contains('on')){
-            //   dimWrap.remove('on')
-            // }
-            return {
-                active: this.isActive && !this.error
-            }
+        showModal(index){
+            console.log(this);
+            this.popupIndex = index;
+            this.togglePopup();
+        },
+        togglePopup(){
+            this.isActive = !this.isActive;
         }
     }
 }
@@ -260,7 +267,7 @@ export default {
 .info-wrap .port-tit a span {font-size:1.2rem; letter-spacing:-.1rem;}
 .port-desc {padding-top:20px;}
 .port-desc li {display:table; width:100%;}
-.port-desc li span {display:table-cell; height:56px; font-size:28px; vertical-align:middle;}
+.port-desc li span {display:table-cell; height:56px; font-size:28px; vertical-align:middle; text-align:center;}
 .port-desc li span:last-child {width:70%;}
 .expire.on .second > div {display:none !important;}
 .top-wrap {display:none; position:fixed; bottom:140px;right:30px;}
