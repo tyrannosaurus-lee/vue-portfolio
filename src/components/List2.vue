@@ -6,10 +6,6 @@
                  v-bind:key="index" 
                  v-on:click="showModal(index)"
                  class="article">
-                <!-- {{ item.id }} <br> 
-                {{ item.name }} <br> 
-                {{ item.device }} <br> 
-                {{item.period}}  -->
                 <button type="button"><img :src="`${item.image}`" alt=""></button>
             </div>
         </div>
@@ -21,8 +17,11 @@
          ref="dim">
         <div class="info-wrap">
             <em class="port-tit">
-                <a href="#" target="_blank">
+                <a v-bind:href="`${list[popupIndex].link}`" target="_blank">
+                <!-- <router-link v-bind:to="'home'"> -->
+                <!-- <router-link to='https://hey.news.co.kr/'> -->
                     {{ list[popupIndex].name }}
+                <!-- </router-link> -->
                 </a>
             </em>
             <div class="project-desc">
@@ -39,7 +38,7 @@
                     </li>
                 </ul>
             </div>
-            <button v-on:click="togglePopup()" type="button" class="close">&times;</button>
+            <!-- <button v-on:click="togglePopup()" type="button" class="close">&times;</button> -->
         </div>
     </div>
 </template> 
@@ -56,97 +55,231 @@ export default {
                     name: 'HeyNews', 
                     device: 'Responsive Web', 
                     period: '2020.5 ~ 2020.10',
-                    image: require('@/assets/images/heynews.png')
+                    image: require('@/assets/images/heynews.png'),
+                    link: 'https://hey.news.co.kr'
                 },
                 {
                     id: 2, 
                     name: 'JTBC New App', 
                     device: 'APP (web view)', 
                     period: '2020.8 ~ 2020.10',
-                    image: require('@/assets/images/jtbcnews.png')
+                    image: require('@/assets/images/jtbcnews.png'),
+                    link: 'https://play.google.com/store/apps/details?id=com.jtbc.news&hl=ko'
                 },
                 {
                     id: 3, 
                     name: '날씨가좋으면 찾아가겠어요', 
                     device: 'Responsive Web', 
                     period: '2020.02',
-                    image: require('@/assets/images/weather.png')
+                    image: require('@/assets/images/weather.png'),
+                    link: 'http://eunhye106.cafe24.com/event/weather/event.html'
                 },
                 {
                     id: 4, 
                     name: 'Golden Disc', 
                     device: 'pc, mobile web', 
                     period: '2019.12',
-                    image: require('@/assets/images/goldendisc.png')
+                    image: require('@/assets/images/goldendisc.png'),
+                    link: 'http://www.goldendisc.co.kr/kr/'
                 },
                 {
                     id: 5, 
                     name: '백상예술대상', 
                     device: 'pc, mobile web', 
                     period: '2019. 04',
-                    image: require('@/assets/images/baeksang.png')
+                    image: require('@/assets/images/baeksang.png'),
+                    link: 'https://www.baeksangawards.co.kr/'
                 },
                 {
                     id: 6, 
                     name: 'JTBC 5th Event', 
                     device: 'pc, mobile web', 
-                    period: '2021.05',
-                    image: require('@/assets/images/jtbc_5th.png')
+                    period: '2016.11',
+                    image: require('@/assets/images/jtbc_5th.png'),
+                    link: 'http://eunhye106.cafe24.com/jtbc_5th/'
                 },
                 {
                     id: 7, 
                     name: 'JTBC 아는형님 200회 출석 체크 이벤트', 
-                    device: 'pc, mobile web', 
-                    period: '2022.05',
-                    image: require('@/assets/images/knowingbrother_logo.jpg')
+                    device: 'Responsive Web', 
+                    period: '2019. 09',
+                    image: require('@/assets/images/knowingbrother_logo.jpg'),
+                    link: 'http://eunhye106.cafe24.com/event/knowingbrother/brother_mv_event.html'
                 },{
                     id: 8, 
                     name: 'JTBC beautyinside 바뀐그림찾기', 
-                    device: 'pc, mobile web', 
-                    period: '2023.05',
-                    image: require('@/assets/images/beautyinside.png')
+                    device: 'Responsive Web', 
+                    period: '2018. 09',
+                    image: require('@/assets/images/beautyinside.png'),
+                    link: 'http://eunhye106.cafe24.com/event/beautyinside/beautyinside_event.html'
                 },{
                     id: 9, 
                     name: 'JTBC2', 
-                    device: 'pc, mobile web', 
-                    period: '2024.05',
-                    image: require('@/assets/images/jtbc2.png')
+                    device: 'pc', 
+                    period: '2018. 06',
+                    image: require('@/assets/images/jtbc2.png'),
+                    link: 'https://jtbc2.joins.com/'
                 },{
                     id: 10, 
                     name: 'JTBC 히든싱어 레전드 편 투표', 
-                    device: 'pc, mobile web', 
-                    period: '2025.05',
-                    image: require('@/assets/images/hiddensinger5.png')
+                    device: 'Responsive Web', 
+                    period: '2018. 06',
+                    image: require('@/assets/images/hiddensinger5.png'),
+                    link: 'http://eunhye106.cafe24.com/event/hiddensinger5/legend_event.html'
                 },{
                     id: 11, 
                     name: '중앙패밀리포인트', 
-                    device: 'pc, mobile web', 
-                    period: '',
-                    image: require('@/assets/images/joongang_family_point1.png')
+                    device: 'Responsive Web', 
+                    period: '2018. 05',
+                    image: require('@/assets/images/joongang_family_point1.png'),
+                    link: 'http://eunhye106.cafe24.com/family_point/family_point01.html'
                 },{
                     id: 12, 
                     name: 'JTBC 일단 뜨겁게 청소하라', 
-                    device: 'pc, mobile web', 
-                    period: '',
-                    image: require('@/assets/images/hotclean.png')
+                    device: 'Responsive Web', 
+                    period: '2019. 09',
+                    image: require('@/assets/images/hotclean.png'),
+                    link: 'http://eunhye106.cafe24.com/event/hotclean/event.html'
                 },{
                     id: 13, 
                     name: 'JTBC Now Promotion', 
-                    device: 'pc, mobile web', 
-                    period: '',
-                    image: require('@/assets/images/jtbcnow.png')
+                    device: 'Responsive Web', 
+                    period: '2018.01',
+                    image: require('@/assets/images/jtbcnow.png'),
+                    link: 'http://eunhye106.cafe24.com/jtbc_now/jtbc_now3.html'
                 },{
                     id: 14, 
                     name: 'JTBC worldwide', 
-                    device: 'pc, mobile web', 
-                    period: '',
-                    image: require('@/assets/images/jtbc_worldwide.png')
+                    device: 'Responsive Web', 
+                    period: '2017. 05 ~ 2017.06',
+                    image: require('@/assets/images/jtbc_worldwide.png'),
+                    link: 'http://www.jtbcworldwide.com/'
                 },{
                     id: 15, 
                     name: 'JTBC 믹스나인', 
                     device: 'pc, mobile web', 
-                    period: '',
-                    image: require('@/assets/images/mixnine.png')
+                    period: '2017. 10 ~ 2018.01',
+                    image: require('@/assets/images/mixnine.png'),
+                    link: 'http://eunhye106.cafe24.com/mixnine/index.html'
+                },{
+                    id: 16, 
+                    name: 'JTBC 밤도깨비 OX 이벤트', 
+                    device: 'pc, mobile web', 
+                    period: '2017. 08',
+                    image: require('@/assets/images/nightgoblin1.png'),
+                    link: 'http://eunhye106.cafe24.com/event/nightgoblin/nightgoblin_oxevent.html'
+                },{
+                    id: 17, 
+                    name: 'JTBC 아는형님 뮤비 대전', 
+                    device: 'pc, mobile web', 
+                    period: '2018. 02',
+                    image: require('@/assets/images/knowingbrother_poster.png'),
+                    link: 'http://eunhye106.cafe24.com/event/knowingbrother/brother_mv_event.html'
+                },{
+                    id: 19, 
+                    name: 'heykoreantimes', 
+                    device: '프로젝트 중단', 
+                    period: '2015.10',
+                    image: require('@/assets/images/bg_27.png'),
+                    link: 'http://eunhye106.cafe24.com/heykorean/heykoreantimes/'
+                },{
+                    id: 20, 
+                    name: 'Korcham', 
+                    device: 'pc', 
+                    period: '2016.05',
+                    image: require('@/assets/images/bg_25.png'),
+                    link: 'http://korchamvietnam.com/'
+                },{
+                    id: 21, 
+                    name: 'HeyKorean payment', 
+                    device: 'pc', 
+                    period: '2016.02',
+                    image: require('@/assets/images/bg_24.png'),
+                    link: 'http://eunhye106.cafe24.com/heykorean/payment/chargehk.html'
+                },{
+                    id: 22, 
+                    name: 'trader Kim', 
+                    device: 'pc', 
+                    period: '2015.09',
+                    image: require('@/assets/images/traderkim.png'),
+                    link: 'http://eunhye106.cafe24.com/heykorean/traderkim/main.html'
+                },{
+                    id: 23, 
+                    name: 'HeyKorean Market', 
+                    device: 'pc', 
+                    period: '2015.11',
+                    image: require('@/assets/images/bg_20.png'),
+                    link: 'http://market.heykorean.com'
+                },{
+                    id: 24, 
+                    name: 'heykorean CS', 
+                    device: 'Responsive Web (프로젝트 중단)', 
+                    period: '2015.10',
+                    image: require('@/assets/images/bg_19.png'),
+                    link: 'http://eunhye106.cafe24.com/heykorean/help/index.html'
+                },{
+                    id: 25, 
+                    name: '신아TNC', 
+                    device: 'pc', 
+                    period: '2014.06',
+                    image: require('@/assets/images/bg_16.png'),
+                    link: 'http://www.shinatnc.com/rb/'
+                },{
+                    id: 26, 
+                    name: '숭실대학교 인공지능 연구실', 
+                    device: 'pc', 
+                    period: '2014.05',
+                    image: require('@/assets/images/bg_13.png'),
+                    link: 'http://ailab.ssu.ac.kr/rb/?r=home'
+                },{
+                    id: 27, 
+                    name: '안상규벌꿀', 
+                    device: 'pc', 
+                    period: '2014.05',
+                    image: require('@/assets/images/bg_11.png'),
+                    link: 'http://www.beeman.co.kr/rb/'
+                },{
+                    id: 28, 
+                    name: 'hizen', 
+                    device: 'pc', 
+                    period: '2014.04',
+                    image: require('@/assets/images/bg_10.png'),
+                    link: 'http://www.hizenco.com/'
+                },{
+                    id: 29, 
+                    name: 'bluetechsolution', 
+                    device: 'pc', 
+                    period: '2014.04',
+                    image: require('@/assets/images/bg_8.png'),
+                    link: 'http://www.bluetechs.com/'
+                },{
+                    id: 30, 
+                    name: '보락', 
+                    device: 'pc', 
+                    period: '2014.03',
+                    image: require('@/assets/images/bg_7.png'),
+                    link: 'http://www.bolak.co.kr/?r=home'
+                },{
+                    id: 31, 
+                    name: '현진특수강', 
+                    device: 'pc', 
+                    period: '2014.02',
+                    image: require('@/assets/images/bg_6.png'),
+                    link: 'http://www.hyunjinst.co.kr/'
+                },{
+                    id: 32, 
+                    name: '서강라이프케어', 
+                    device: 'pc', 
+                    period: '2013.11',
+                    image: require('@/assets/images/bg_5.png'),
+                    link: '#'
+                },{
+                    id: 33, 
+                    name: 'CBNU IUCF', 
+                    device: 'pc', 
+                    period: '2014.06',
+                    image: require('@/assets/images/bg_15.png'),
+                    link: '#'
                 }
             ],
             isActive: false,
@@ -172,6 +305,7 @@ export default {
 	overflow:hidden;position:relative; padding:15px; box-sizing:border-box; cursor:pointer;
 	flex:0 0 16.666667%; max-width:16.666667%;
 }
+.article button {display:block; width:100%}
 .article .thumb-area, .article .second {width:100%;height:100%;}
 .article .thumb-area a {display:block; cursor:pointer;}
 .article .thumb-area a img {transition:transform .5s cubic-bezier(.175,.885,.32,1.275); transform:scale(1);}

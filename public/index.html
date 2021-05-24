@@ -69,19 +69,19 @@
         })
 
         /* 팝업 열기 */
-        $('.thumb-area').click(function(){
-          const self = $(this).parents('.article');
-          if(!$('.article').is('on')){
-            self.toggleClass('on');
-            $('.article').not(self).removeClass('on');
-            setTimeout(function() {
-              self.find('.info-wrap').addClass('on');
-            }, 300);
-            setTimeout(function() {
-              $('.dim-wrap').addClass("on");
-            }, 200);
-          }
-        })
+        // $('.thumb-area').click(function(){
+        //   const self = $(this).parents('.article');
+        //   if(!$('.article').is('on')){
+        //     self.toggleClass('on');
+        //     $('.article').not(self).removeClass('on');
+        //     setTimeout(function() {
+        //       self.find('.info-wrap').addClass('on');
+        //     }, 300);
+        //     setTimeout(function() {
+        //       $('.dim-wrap').addClass("on");
+        //     }, 200);
+        //   }
+        // })
 
         /* 팝업 닫기 */
         // const popupClose = document.querySelectorAll('.close');
@@ -93,14 +93,14 @@
         // });
 
         //view profile
-        $(".eun_pop").on('click', function(){
-          $('.eun_site_wrap').addClass("on");
+        // $(".eun_pop").on('click', function(){
+        //   $('.eun_site_wrap').addClass("on");
           
-          setTimeout(function() {
-            $('.rina_eun').addClass("on");
-            $('.dim-wrap').addClass('on');
-          }, 200);
-        });
+        //   setTimeout(function() {
+        //     $('.rina_eun').addClass("on");
+        //     $('.dim-wrap').addClass('on');
+        //   }, 200);
+        // });
 
       });
 
